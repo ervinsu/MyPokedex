@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyPokedex</string>
+    <string name="unknown">\?</string>
+    <string name="loading">loading</string>
+</resources>

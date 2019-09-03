@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.ervin.mypokedex"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        pickFirst("META-INF/atomicfu.kotlin_module")
+    }
+
+}
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.core:core-ktx:$coreKtx"
+    implementation "androidx.constraintlayout:constraintlayout:$constrainLayout"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test:runner:$testRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"
+
+    // Dependencies for Architecture Component
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "com.google.android.material:material:$androidMaterial"
+    implementation "androidx.legacy:legacy-support-v4:$androidLegacy"
+
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    kapt  "android.arch.persistence.room:compiler:$roomVersion"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+
+    // Dependencies for Paging
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
+
+    // Dependencies for Glide
+    implementation("com.github.bumptech.glide:glide:$glideVersion") {
+        exclude group: "androidx"
+    }
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
+
+    // Coroutine listeners for Anko Layouts
+    implementation "org.jetbrains.anko:anko-sdk25-coroutines:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$ankoVersion"
+}
